@@ -39,8 +39,9 @@ def get_args():
 
     parser.add_argument('--only-mask', action='store_true', default=False,
                         help='download only mask wo/ flow')
-    parser.add_argument('--dry-run', action='store_false', default=True, 
-                        help='')
+
+    parser.add_argument('--dry-run', action='store_false', default=True,
+                        help='do not download anything')
 
     args = parser.parse_args()
 
@@ -154,4 +155,5 @@ if __name__ == '__main__':
 
         cmd = 'wget -r -O ' + targetfile + ' ' + fileurl
         print(cmd)
-        # system(cmd)
+        if not args.dry_run:
+            system(cmd)
